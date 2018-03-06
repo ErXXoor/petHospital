@@ -11,6 +11,8 @@ import org.petHospital.mapper.UserMapper;
 import org.petHospital.model.UserEntity;
 import org.petHospital.service.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,25 +21,25 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 
-@RestController
+@Controller
 public class UserController {
 	private Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	private QueryService queryService;
 //	private UserMapper userMapper;
-//	  @RequestMapping(value="/index")
-//	    public String index() {
-//	        return "index";
-//	    }
+	  @GetMapping(value="/")
+	    public String index() {
+	        return "index";
+	    }
 
-    @RequestMapping(value="/getUser")
-    //@ResponseBody
-    public UserEntity getUser(String id) {
-      UserEntity user=queryService.getOne(id);
-    		//UserEntity user=userMapper.getOne(id);
-    		return user;
-    }
-     
+//    @RequestMapping(value="/getUser")
+//    //@ResponseBody
+//    public UserEntity getUser(String id) {
+//      UserEntity user=queryService.getOne(id);
+//    		//UserEntity user=userMapper.getOne(id);
+//    		return user;
+//    }
+//     
     
 }
