@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
   <generatorConfiguration>
-  	<classPathEntry location="/Users/hongboli/.m2/repository/mysql/mysql-connector-java/5.1.41/mysql-connector-java-5.1.41.jar"/>
+  	<classPathEntry location="/Users/gyo/.m2/repository/mysql/mysql-connector-java/5.1.41/mysql-connector-java-5.1.41.jar"/>
 
   	<context id="default" targetRuntime="MyBatis3">
   		<commentGenerator> 
@@ -35,7 +35,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="case_entity">
+		<table tableName="ward">
 		
 			<generatedKey column="id" sqlStatement="MySql" identity="true"></generatedKey>
 		</table>

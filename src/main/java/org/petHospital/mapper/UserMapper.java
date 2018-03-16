@@ -1,20 +1,30 @@
 package org.petHospital.mapper;
 
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
+import org.petHospital.model.User;
+import org.petHospital.model.UserExample;
 
-import org.petHospital.model.UserEntity;
-import org.springframework.stereotype.Repository;
-
-//@Repository
 public interface UserMapper {
-	List<UserEntity> getAll();
+    int countByExample(UserExample example);
 
-    UserEntity getOne(Long id);
+    int deleteByExample(UserExample example);
 
-    void insert(UserEntity user);
+    int deleteByPrimaryKey(Integer id);
 
-    void update(UserEntity user);
+    int insert(User record);
 
-    void delete(Long id);
+    int insertSelective(User record);
 
+    List<User> selectByExample(UserExample example);
+
+    User selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByExample(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByPrimaryKeySelective(User record);
+
+    int updateByPrimaryKey(User record);
 }
