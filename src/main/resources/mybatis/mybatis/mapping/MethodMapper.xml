@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.petHospital.mapper.MethodMapper" >
+  <resultMap id="BaseResultMap" type="org.petHospital.model.Method" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="medicine" property="medicine" jdbcType="VARCHAR" />
+    <result column="vaccine" property="vaccine" jdbcType="VARCHAR" />
+    <result column="examination" property="examination" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="fee" property="fee" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, medicine, vaccine, examination, description, fee
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.petHospital.model.MethodExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from method
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from method
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from method
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.petHospital.model.MethodExample" >
+    delete from method
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.petHospital.model.Method" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into method (medicine, vaccine, examination, 
+      description, fee)
+    values (#{medicine,jdbcType=VARCHAR}, #{vaccine,jdbcType=VARCHAR}, #{examination,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{fee,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="org.petHospital.model.Method" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into method
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="medicine != null" >
+        medicine,
+      </if>
+      <if test="vaccine != null" >
+        vaccine,
+      </if>
+      <if test="examination != null" >
+        examination,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="medicine != null" >
+        #{medicine,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccine != null" >
+        #{vaccine,jdbcType=VARCHAR},
+      </if>
+      <if test="examination != null" >
+        #{examination,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.petHospital.model.MethodExample" resultType="java.lang.Integer" >
+    select count(*) from method
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update method
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.medicine != null" >
+        medicine = #{record.medicine,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vaccine != null" >
+        vaccine = #{record.vaccine,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examination != null" >
+        examination = #{record.examination,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fee != null" >
+        fee = #{record.fee,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update method
+    set id = #{record.id,jdbcType=INTEGER},
+      medicine = #{record.medicine,jdbcType=VARCHAR},
+      vaccine = #{record.vaccine,jdbcType=VARCHAR},
+      examination = #{record.examination,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      fee = #{record.fee,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.petHospital.model.Method" >
+    update method
+    <set >
+      <if test="medicine != null" >
+        medicine = #{medicine,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccine != null" >
+        vaccine = #{vaccine,jdbcType=VARCHAR},
+      </if>
+      <if test="examination != null" >
+        examination = #{examination,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.petHospital.model.Method" >
+    update method
+    set medicine = #{medicine,jdbcType=VARCHAR},
+      vaccine = #{vaccine,jdbcType=VARCHAR},
+      examination = #{examination,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      fee = #{fee,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

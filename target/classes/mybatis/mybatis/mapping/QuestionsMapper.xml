@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.petHospital.mapper.QuestionsMapper" >
+  <resultMap id="BaseResultMap" type="org.petHospital.model.Questions" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="question_context" property="questionContext" jdbcType="VARCHAR" />
+    <result column="question_category" property="questionCategory" jdbcType="VARCHAR" />
+    <result column="question_score" property="questionScore" jdbcType="INTEGER" />
+    <result column="paper_id" property="paperId" jdbcType="INTEGER" />
+    <result column="answer" property="answer" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, question_context, question_category, question_score, paper_id, answer
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.petHospital.model.QuestionsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from questions
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from questions
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from questions
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.petHospital.model.QuestionsExample" >
+    delete from questions
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.petHospital.model.Questions" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into questions (question_context, question_category, 
+      question_score, paper_id, answer
+      )
+    values (#{questionContext,jdbcType=VARCHAR}, #{questionCategory,jdbcType=VARCHAR}, 
+      #{questionScore,jdbcType=INTEGER}, #{paperId,jdbcType=INTEGER}, #{answer,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.petHospital.model.Questions" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into questions
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="questionContext != null" >
+        question_context,
+      </if>
+      <if test="questionCategory != null" >
+        question_category,
+      </if>
+      <if test="questionScore != null" >
+        question_score,
+      </if>
+      <if test="paperId != null" >
+        paper_id,
+      </if>
+      <if test="answer != null" >
+        answer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="questionContext != null" >
+        #{questionContext,jdbcType=VARCHAR},
+      </if>
+      <if test="questionCategory != null" >
+        #{questionCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="questionScore != null" >
+        #{questionScore,jdbcType=INTEGER},
+      </if>
+      <if test="paperId != null" >
+        #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.petHospital.model.QuestionsExample" resultType="java.lang.Integer" >
+    select count(*) from questions
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update questions
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.questionContext != null" >
+        question_context = #{record.questionContext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.questionCategory != null" >
+        question_category = #{record.questionCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.questionScore != null" >
+        question_score = #{record.questionScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.paperId != null" >
+        paper_id = #{record.paperId,jdbcType=INTEGER},
+      </if>
+      <if test="record.answer != null" >
+        answer = #{record.answer,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update questions
+    set id = #{record.id,jdbcType=INTEGER},
+      question_context = #{record.questionContext,jdbcType=VARCHAR},
+      question_category = #{record.questionCategory,jdbcType=VARCHAR},
+      question_score = #{record.questionScore,jdbcType=INTEGER},
+      paper_id = #{record.paperId,jdbcType=INTEGER},
+      answer = #{record.answer,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.petHospital.model.Questions" >
+    update questions
+    <set >
+      <if test="questionContext != null" >
+        question_context = #{questionContext,jdbcType=VARCHAR},
+      </if>
+      <if test="questionCategory != null" >
+        question_category = #{questionCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="questionScore != null" >
+        question_score = #{questionScore,jdbcType=INTEGER},
+      </if>
+      <if test="paperId != null" >
+        paper_id = #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="answer != null" >
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.petHospital.model.Questions" >
+    update questions
+    set question_context = #{questionContext,jdbcType=VARCHAR},
+      question_category = #{questionCategory,jdbcType=VARCHAR},
+      question_score = #{questionScore,jdbcType=INTEGER},
+      paper_id = #{paperId,jdbcType=INTEGER},
+      answer = #{answer,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
