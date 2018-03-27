@@ -1,7 +1,8 @@
 package org.petHospital.service;
 
+import org.petHospital.model.User;
 import org.petHospital.model.UserEntity;
 
 public interface QueryService {
-	UserEntity getOne(String id);
+	User getOne(String id);
 }

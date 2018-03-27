@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" style="height: 100%">
 <head>
-    <title>Hello World!</title>
+    <title>Hello World!</title>	
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
-<body>
-	<div class='petHospital'>
-		<iframe MARGINWIDTH="0" MARGINHEIGHT="0" HSPACE="0" VSPACE="0" FRAMEBORDER="0" SCROLLING="no" src="head.html" frameborder="0"></iframe>
+
+<body style="height: 100%">
+	<div style="height: 100%">
+		<el-row>	
+			<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24"><div class="grid-content bg-purple-dark" id="top-bar">
+				<div id="user-name">{{user_name}}</div>
+			</div></el-col>
+		</el-row>
+		<aside class="el-aside left-menu">
+			<li class="self-menu-item el-menu-item" id="case-management">
+				<i class="el-icon-menu el-menu-icon" style="font-size: 32px"></i>
+				<span>病历管理</span>
+			</li>
+			<li class="self-menu-item el-menu-item" id="test-management">
+				<i class="el-icon-tickets el-menu-icon" style="font-size: 32px"></i>
+				<span>测试管理</span>
+			</li>
+			<li class="self-menu-item el-menu-item" id="sys-management">
+				<i class="el-icon-setting el-menu-icon" style="font-size: 32px"></i>
+				<span>系统管理</span>
+			</li>
+		</aside>
 	</div>
-<h1 th:inline="text">Hello.v.2</h1>
-<p th:text="${hello}"></p>
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script th:src="@{/js/index.js}"></script>
 </body>
+
 </html>

@@ -2,13 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Hello World!</title>
+    <title>Hello World!</title>	
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
+
 <body>
-	<div class='petHospital'>
-		<iframe MARGINWIDTH="0" MARGINHEIGHT="0" HSPACE="0" VSPACE="0" FRAMEBORDER="0" SCROLLING="no" src="head.html" frameborder="0"></iframe>
-	</div>
-<h1 th:inline="text">Hello.v.2</h1>
-<p th:text="${hello}"></p>
+	<el-row>	
+		<el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
+	</el-row>
+
+
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script th:src="@{/js/index.js}"></script>
 </body>
+
 </html>

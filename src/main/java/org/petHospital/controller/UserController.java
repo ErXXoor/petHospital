@@ -28,7 +28,7 @@ public class UserController {
 	@Autowired
 	private QueryService queryService;
 //	private UserMapper userMapper;
-	  @GetMapping(value="/")
+	  @RequestMapping(value={"/","/index"})
 	    public String index() {
 	        return "index";
 	    }
