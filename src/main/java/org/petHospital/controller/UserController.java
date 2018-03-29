@@ -12,6 +12,7 @@ import org.petHospital.model.UserEntity;
 import org.petHospital.service.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,10 @@ public class UserController {
 	private QueryService queryService;
 //	private UserMapper userMapper;
 	  @RequestMapping(value={"/","/index"})
-	    public String index() {
+	    public String index(Model model) {
+		  String name=new String();
+		  name="lihongbo";
+		  model.addAttribute("user",name);
 	        return "index";
 	    }
 

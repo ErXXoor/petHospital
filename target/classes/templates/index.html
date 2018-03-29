@@ -11,7 +11,7 @@
 	<div style="height: 100%">
 		<el-row>	
 			<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24"><div class="grid-content bg-purple-dark" id="top-bar">
-				<div id="user-name">{{user_name}}</div>
+				<div id="user-name"><span th:text="${user}"></span></div>
 			</div></el-col>
 		</el-row>
 		<aside class="el-aside left-menu">
@@ -28,14 +28,17 @@
 				<span>系统管理</span>
 			</li>
 		</aside>
+		<section layout:fragment="content"></section>
 	</div>
 
 <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script> -->
 <script type="text/javascript" src="@{/js/vue.js}"></script>
+<script type="text/javascript" src="@{/js/vue-router.js}"></script>
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script th:src="@{/js/index.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 </body>
 
 </html>
