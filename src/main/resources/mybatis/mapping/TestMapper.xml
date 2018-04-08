@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.petHospital.mapper.PaperMapper" >
-  <resultMap id="BaseResultMap" type="org.petHospital.model.Paper" >
+<mapper namespace="org.petHospital.mapper.TestMapper" >
+  <resultMap id="BaseResultMap" type="org.petHospital.model.Test" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="questions" property="questions" jdbcType="VARCHAR" />
+    <result column="paper_id" property="paperId" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,15 +67,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, questions
+    id, paper_id, start_time, end_time, name
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.petHospital.model.PaperExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.petHospital.model.TestExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from paper
+    from test
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -83,56 +86,85 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from paper
+    from test
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from paper
+    delete from test
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="org.petHospital.model.PaperExample" >
-    delete from paper
+  <delete id="deleteByExample" parameterType="org.petHospital.model.TestExample" >
+    delete from test
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="org.petHospital.model.Paper" >
+  <insert id="insert" parameterType="org.petHospital.model.Test" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into paper (questions)
-    values (#{questions,jdbcType=VARCHAR})
+    insert into test (paper_id, start_time, end_time, 
+      name)
+    values (#{paperId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{name,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="org.petHospital.model.Paper" >
+  <insert id="insertSelective" parameterType="org.petHospital.model.Test" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into paper
+    insert into test
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="questions != null" >
-        questions,
+      <if test="paperId != null" >
+        paper_id,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="name != null" >
+        name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="questions != null" >
-        #{questions,jdbcType=VARCHAR},
+      <if test="paperId != null" >
+        #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.petHospital.model.PaperExample" resultType="java.lang.Integer" >
-    select count(*) from paper
+  <select id="countByExample" parameterType="org.petHospital.model.TestExample" resultType="java.lang.Integer" >
+    select count(*) from test
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update paper
+    update test
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.questions != null" >
-        questions = #{record.questions,jdbcType=VARCHAR},
+      <if test="record.paperId != null" >
+        paper_id = #{record.paperId,jdbcType=INTEGER},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -140,25 +172,40 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update paper
+    update test
     set id = #{record.id,jdbcType=INTEGER},
-      questions = #{record.questions,jdbcType=VARCHAR}
+      paper_id = #{record.paperId,jdbcType=INTEGER},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      name = #{record.name,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.petHospital.model.Paper" >
-    update paper
+  <update id="updateByPrimaryKeySelective" parameterType="org.petHospital.model.Test" >
+    update test
     <set >
-      <if test="questions != null" >
-        questions = #{questions,jdbcType=VARCHAR},
+      <if test="paperId != null" >
+        paper_id = #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.petHospital.model.Paper" >
-    update paper
-    set questions = #{questions,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="org.petHospital.model.Test" >
+    update test
+    set paper_id = #{paperId,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

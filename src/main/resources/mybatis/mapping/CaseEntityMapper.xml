@@ -240,4 +240,9 @@
       category_id = #{categoryId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="findAllCaseEntityByCategoryId" resultMap="BaseResultMap">
+ 	select * from case_entity
+ 	where
+ 	category_id=#{arg0} 
+  </select>
 </mapper>

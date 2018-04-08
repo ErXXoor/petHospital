@@ -11,6 +11,8 @@ public class Test {
 
     private Date endTime;
 
+    private String name;
+
     public Integer getId() {
         return id;
     }
@@ -41,5 +43,13 @@ public class Test {
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 }
