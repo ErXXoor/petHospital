@@ -27,4 +27,11 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    Integer insertUser(String id, String username, String password);
+    
+    List<User> findAllUser();
+    
+    Integer updateById(String id, String password);
+
 }

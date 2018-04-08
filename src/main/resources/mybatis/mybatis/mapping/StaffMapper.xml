@@ -193,4 +193,8 @@
       room_id = #{roomId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!-- <insert id="insertStaff" parameterType="java.lang.String">
+  	insert into staff(id, staff_name, room_id, title) values (#{id},#{name},#{room},#{title})
+  	where not exists(select id from user where id = #{id});
+  </insert> -->
 </mapper>
