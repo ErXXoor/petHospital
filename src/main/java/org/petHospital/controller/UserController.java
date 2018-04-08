@@ -35,6 +35,6 @@ public class UserController {
 		  String name=new String();
 	        return "index";
 	    }
-//     
+	  
     
 }
