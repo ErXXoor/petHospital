@@ -13,6 +13,7 @@ import org.petHospital.service.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-
-@Controller
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
 public class UserController {
 	private Logger logger = LoggerFactory.getLogger(UserController.class);
 	
@@ -30,20 +31,10 @@ public class UserController {
 	private QueryService queryService;
 //	private UserMapper userMapper;
 	  @RequestMapping(value={"/","/index"})
-	    public String index(Model model) {
+	    public String index() {
 		  String name=new String();
-		  name="lihongbo";
-		  model.addAttribute("user",name);
 	        return "index";
 	    }
-
-//    @RequestMapping(value="/getUser")
-//    //@ResponseBody
-//    public UserEntity getUser(String id) {
-//      UserEntity user=queryService.getOne(id);
-//    		//UserEntity user=userMapper.getOne(id);
-//    		return user;
-//    }
 //     
     
 }

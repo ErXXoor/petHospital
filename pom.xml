@@ -32,10 +32,6 @@
 		</dependency>
 		
 		
-		 <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-thymeleaf</artifactId>
-    </dependency>
 	
 		<dependency>
             <groupId>mysql</groupId>
@@ -79,11 +75,17 @@
           <version>1.9.22</version>
       </dependency>
       
-      <dependency>
-  	  <groupId>nz.net.ultraq.thymeleaf</groupId>
-  	  <artifactId>thymeleaf-layout-dialect</artifactId>
-  	  <version>2.0.5</version>
-	  </dependency>
+
+	  
+	  <dependency>
+
+    <groupId>com.thetransactioncompany</groupId>
+
+    <artifactId>cors-filter</artifactId>
+
+    <version>[ version ]</version>
+
+</dependency>
     </dependencies>
 
 	
