@@ -4,7 +4,9 @@ import org.petHospital.mapper.StaffMapper;
 import org.petHospital.model.Staff;
 import org.petHospital.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class StaffServiceImp implements StaffService{
 	@Autowired
 	private StaffMapper staffMapper;

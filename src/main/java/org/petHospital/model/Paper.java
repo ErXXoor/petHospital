@@ -5,6 +5,8 @@ public class Paper {
 
     private String questions;
 
+    private String name;
+
     public Integer getId() {
         return id;
     }
@@ -19,5 +21,13 @@ public class Paper {
 
     public void setQuestions(String questions) {
         this.questions = questions == null ? null : questions.trim();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 }

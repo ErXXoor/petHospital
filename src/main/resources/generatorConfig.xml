@@ -35,7 +35,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="ward">
+		<table tableName="questions">
 		
 			<generatedKey column="id" sqlStatement="MySql" identity="true"></generatedKey>
 		</table>

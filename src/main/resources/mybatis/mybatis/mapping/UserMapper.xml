@@ -193,16 +193,27 @@
       user_type = #{userType,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <insert id="insertUser" parameterType = "java.lang.String" >
+	<insert id="insertUser" parameterType = "java.lang.String" >
   	insert into user(id,user_name,user_pwd) values (#{id},#{username},#{password})
 	where not exists(select id from user where user_name = #{username});
   </insert>
   <select id="findAllUser" resultMap="BaseResultMap">
   	select * from user
   </select>
-  <update id="updateById" parameterType="java.lang.String">
+	<update id="updateById" parameterType="java.lang.String">
   	update user
   	set user_pwd = #{password}
   	where id = #{id}
   </update>
+  <select id="findUserByNameAndPassword" resultMap="BaseResultMap">
+  	select * from user 
+  	where 
+  	user_name=#{username}  
+  	and	user_pwd=#{password}
+  </select>
+  <select id="selectByUsername" resultMap="BaseResultMap">
+  	select * from user
+  	where user_name=#{username}
+  </select>
+  
 </mapper>
