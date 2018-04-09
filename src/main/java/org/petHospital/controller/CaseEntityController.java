@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import net.sf.json.JSONObject;
+
 @RestController
 public class CaseEntityController {
 	private Logger logger = LoggerFactory.getLogger(CaseEntityController.class);
@@ -32,8 +34,12 @@ public class CaseEntityController {
 	 * @return
 	 */
 	@GetMapping(path="/getAllCategory")
-	public List<Category> findAllCategory(){
-		return categoryService.findAllCategory();
+	public String findAllCategory(){
+		JSONObject json = new JSONObject();
+		List<Category> list = categoryService.findAllCategory();
+		json.put("retCode", "0000");
+		json.put("categoryList",list);
+		return json.toString();
 	}
 	
 	/**
@@ -42,8 +48,12 @@ public class CaseEntityController {
 	 * @return
 	 */
 	@PostMapping(path="/getCaseEntity")
-	public List<CaseEntity> findAllCaseEntityByCategoryId(@RequestParam int id){
-		return caseEntityService.findAllCaseEntityByCategoryId(id);
+	public String findAllCaseEntityByCategoryId(@RequestParam int id){
+		JSONObject json = new JSONObject();
+		List<CaseEntity> list = caseEntityService.findAllCaseEntityByCategoryId(id);
+		json.put("retCode", "0000");
+		json.put("caseEntityList", list);
+		return json.toString();
 	}
 	
 	/**
@@ -52,8 +62,13 @@ public class CaseEntityController {
 	 * @return
 	 */
 	@PostMapping(path="/getCaseResource")
-	public CaseResource getCaseResource(@RequestParam String id){
-		return caseResourceService.getCaseResource(Integer.parseInt(id));
+	public String getCaseResource(@RequestParam String id){
+		JSONObject json = new JSONObject();
+		
+		CaseResource caseResource = caseResourceService.getCaseResource(Integer.parseInt(id));
+		json.put("retCode", "0000");
+		json.put("caseResource", caseResource);
+		return json.toString();
 	}	
 	
 }
