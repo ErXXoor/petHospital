@@ -28,13 +28,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-<<<<<<< HEAD
-@CrossOrigin(origins = "*", maxAge = 3600)
-=======
 import net.sf.json.JSONObject;
 
 
->>>>>>> master
 @RestController
 public class UserController {
 	private Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -47,12 +43,11 @@ public class UserController {
 //	private UserMapper userMapper;
 	  @RequestMapping(value={"/","/index"})
 	    public String index() {
-		  String name=new String();
-	        return "index";
+		  JSONObject json = new JSONObject();
+		  json.put("test","index");
+	        return json.toString();
 	    }
-<<<<<<< HEAD
-	  
-=======
+
 	/**
 	 * 得到所有用户列表
 	 * @return
@@ -138,6 +133,5 @@ public class UserController {
 //    		return user;
 //    }
 //     
->>>>>>> master
-    
+  
 }

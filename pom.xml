@@ -73,19 +73,6 @@
           <artifactId>nekohtml</artifactId>
           </dependency>
       
-<<<<<<< HEAD
-
-	  
-	  <dependency>
-
-    <groupId>com.thetransactioncompany</groupId>
-
-    <artifactId>cors-filter</artifactId>
-
-    <version>[ version ]</version>
-
-</dependency>
-=======
       <dependency>
   	  <groupId>nz.net.ultraq.thymeleaf</groupId>
   	  <artifactId>thymeleaf-layout-dialect</artifactId>
@@ -99,12 +86,7 @@
     	<version>2.4</version>
     	<classifier>jdk15</classifier>
 		</dependency>
-          
-        <dependency>  
-            <groupId>org.apache.commons</groupId>  
-            <artifactId>commons-lang3</artifactId>  
-            <version>3.1</version>  
-        </dependency>  
+           
           
         <dependency>  
             <groupId>commons-beanutils</groupId>  
@@ -129,7 +111,6 @@
             <artifactId>ezmorph</artifactId>  
             <version>1.0.6</version>  
         </dependency> 
->>>>>>> master
     </dependencies>
 
 	
