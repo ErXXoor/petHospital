@@ -8,7 +8,7 @@
     <result column="exam" property="exam" jdbcType="INTEGER" />
     <result column="result" property="result" jdbcType="INTEGER" />
     <result column="method" property="method" jdbcType="INTEGER" />
-    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="classification" property="classification" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, case_name, symptom, exam, result, method, category_id
+    id, case_name, symptom, exam, result, method, classification
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.petHospital.model.CaseEntityExample" >
     select
@@ -106,10 +106,10 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into case_entity (case_name, symptom, exam, 
-      result, method, category_id
+      result, method, classification
       )
     values (#{caseName,jdbcType=VARCHAR}, #{symptom,jdbcType=INTEGER}, #{exam,jdbcType=INTEGER}, 
-      #{result,jdbcType=INTEGER}, #{method,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}
+      #{result,jdbcType=INTEGER}, #{method,jdbcType=INTEGER}, #{classification,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="org.petHospital.model.CaseEntity" >
@@ -133,8 +133,8 @@
       <if test="method != null" >
         method,
       </if>
-      <if test="categoryId != null" >
-        category_id,
+      <if test="classification != null" >
+        classification,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -153,8 +153,8 @@
       <if test="method != null" >
         #{method,jdbcType=INTEGER},
       </if>
-      <if test="categoryId != null" >
-        #{categoryId,jdbcType=INTEGER},
+      <if test="classification != null" >
+        #{classification,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -185,8 +185,8 @@
       <if test="record.method != null" >
         method = #{record.method,jdbcType=INTEGER},
       </if>
-      <if test="record.categoryId != null" >
-        category_id = #{record.categoryId,jdbcType=INTEGER},
+      <if test="record.classification != null" >
+        classification = #{record.classification,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -201,7 +201,7 @@
       exam = #{record.exam,jdbcType=INTEGER},
       result = #{record.result,jdbcType=INTEGER},
       method = #{record.method,jdbcType=INTEGER},
-      category_id = #{record.categoryId,jdbcType=INTEGER}
+      classification = #{record.classification,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -224,8 +224,8 @@
       <if test="method != null" >
         method = #{method,jdbcType=INTEGER},
       </if>
-      <if test="categoryId != null" >
-        category_id = #{categoryId,jdbcType=INTEGER},
+      <if test="classification != null" >
+        classification = #{classification,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -237,12 +237,7 @@
       exam = #{exam,jdbcType=INTEGER},
       result = #{result,jdbcType=INTEGER},
       method = #{method,jdbcType=INTEGER},
-      category_id = #{categoryId,jdbcType=INTEGER}
+      classification = #{classification,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="findAllCaseEntityByCategoryId" resultMap="BaseResultMap">
- 	select * from case_entity
- 	where
- 	category_id=#{arg0} 
-  </select>
 </mapper>

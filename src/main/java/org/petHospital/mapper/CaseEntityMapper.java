@@ -27,6 +27,4 @@ public interface CaseEntityMapper {
     int updateByPrimaryKeySelective(CaseEntity record);
 
     int updateByPrimaryKey(CaseEntity record);
-    
-    List<CaseEntity> findAllCaseEntityByCategoryId(int id);
 }

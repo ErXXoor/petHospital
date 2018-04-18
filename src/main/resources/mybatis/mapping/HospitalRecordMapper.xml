@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.petHospital.mapper.UserMapper" >
-  <resultMap id="BaseResultMap" type="org.petHospital.model.User" >
+<mapper namespace="org.petHospital.mapper.HospitalRecordMapper" >
+  <resultMap id="BaseResultMap" type="org.petHospital.model.HospitalRecord" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="user_name" property="userName" jdbcType="VARCHAR" />
-    <result column="user_pwd" property="userPwd" jdbcType="VARCHAR" />
-    <result column="user_type" property="userType" jdbcType="INTEGER" />
+    <result column="patient" property="patient" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="DATE" />
+    <result column="end_time" property="endTime" jdbcType="DATE" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,15 +67,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, user_name, user_pwd, user_type
+    id, patient, start_time, end_time, description
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.petHospital.model.UserExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.petHospital.model.HospitalRecordExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from user
+    from hospital_record
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,76 +86,85 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from user
+    from hospital_record
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from user
+    delete from hospital_record
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="org.petHospital.model.UserExample" >
-    delete from user
+  <delete id="deleteByExample" parameterType="org.petHospital.model.HospitalRecordExample" >
+    delete from hospital_record
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="org.petHospital.model.User" >
+  <insert id="insert" parameterType="org.petHospital.model.HospitalRecord" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into user (user_name, user_pwd, user_type
-      )
-    values (#{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, #{userType,jdbcType=INTEGER}
-      )
+    insert into hospital_record (patient, start_time, end_time, 
+      description)
+    values (#{patient,jdbcType=VARCHAR}, #{startTime,jdbcType=DATE}, #{endTime,jdbcType=DATE}, 
+      #{description,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="org.petHospital.model.User" >
+  <insert id="insertSelective" parameterType="org.petHospital.model.HospitalRecord" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into user
+    insert into hospital_record
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userName != null" >
-        user_name,
+      <if test="patient != null" >
+        patient,
       </if>
-      <if test="userPwd != null" >
-        user_pwd,
+      <if test="startTime != null" >
+        start_time,
       </if>
-      <if test="userType != null" >
-        user_type,
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="description != null" >
+        description,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
+      <if test="patient != null" >
+        #{patient,jdbcType=VARCHAR},
       </if>
-      <if test="userPwd != null" >
-        #{userPwd,jdbcType=VARCHAR},
+      <if test="startTime != null" >
+        #{startTime,jdbcType=DATE},
       </if>
-      <if test="userType != null" >
-        #{userType,jdbcType=INTEGER},
+      <if test="endTime != null" >
+        #{endTime,jdbcType=DATE},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.petHospital.model.UserExample" resultType="java.lang.Integer" >
-    select count(*) from user
+  <select id="countByExample" parameterType="org.petHospital.model.HospitalRecordExample" resultType="java.lang.Integer" >
+    select count(*) from hospital_record
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update user
+    update hospital_record
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.userName != null" >
-        user_name = #{record.userName,jdbcType=VARCHAR},
+      <if test="record.patient != null" >
+        patient = #{record.patient,jdbcType=VARCHAR},
       </if>
-      <if test="record.userPwd != null" >
-        user_pwd = #{record.userPwd,jdbcType=VARCHAR},
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=DATE},
       </if>
-      <if test="record.userType != null" >
-        user_type = #{record.userType,jdbcType=INTEGER},
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=DATE},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -162,58 +172,40 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update user
+    update hospital_record
     set id = #{record.id,jdbcType=INTEGER},
-      user_name = #{record.userName,jdbcType=VARCHAR},
-      user_pwd = #{record.userPwd,jdbcType=VARCHAR},
-      user_type = #{record.userType,jdbcType=INTEGER}
+      patient = #{record.patient,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=DATE},
+      end_time = #{record.endTime,jdbcType=DATE},
+      description = #{record.description,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.petHospital.model.User" >
-    update user
+  <update id="updateByPrimaryKeySelective" parameterType="org.petHospital.model.HospitalRecord" >
+    update hospital_record
     <set >
-      <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
+      <if test="patient != null" >
+        patient = #{patient,jdbcType=VARCHAR},
       </if>
-      <if test="userPwd != null" >
-        user_pwd = #{userPwd,jdbcType=VARCHAR},
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=DATE},
       </if>
-      <if test="userType != null" >
-        user_type = #{userType,jdbcType=INTEGER},
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=DATE},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.petHospital.model.User" >
-    update user
-    set user_name = #{userName,jdbcType=VARCHAR},
-      user_pwd = #{userPwd,jdbcType=VARCHAR},
-      user_type = #{userType,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="org.petHospital.model.HospitalRecord" >
+    update hospital_record
+    set patient = #{patient,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=DATE},
+      end_time = #{endTime,jdbcType=DATE},
+      description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-	<insert id="insertUser" parameterType = "java.lang.String" >
-  	insert into user(id,user_name,user_pwd) values (#{id},#{username},#{password})
-	where not exists(select id from user where user_name = #{username});
-  </insert>
-  <select id="findAllUser" resultMap="BaseResultMap">
-  	select * from user
-  </select>
-	<update id="updateById" parameterType="java.lang.String">
-  	update user
-  	set user_pwd = #{password}
-  	where id = #{id}
-  </update>
-  <select id="findUserByNameAndPassword" resultMap="BaseResultMap">
-  	select * from user 
-  	where 
-  	user_name=#{username}  
-  	and	user_pwd=#{password}
-  </select>
-  <select id="selectByUsername" resultMap="BaseResultMap">
-  	select * from user
-  	where user_name=#{username}
-  </select>
-  
 </mapper>

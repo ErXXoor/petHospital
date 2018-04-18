@@ -2,16 +2,16 @@ package org.petHospital.model;
 
 import java.util.Date;
 
-public class Test {
+public class HospitalRecord {
     private Integer id;
 
-    private Integer paperId;
+    private String patient;
 
     private Date startTime;
 
     private Date endTime;
 
-    private String name;
+    private String description;
 
     public Integer getId() {
         return id;
@@ -21,12 +21,12 @@ public class Test {
         this.id = id;
     }
 
-    public Integer getPaperId() {
-        return paperId;
+    public String getPatient() {
+        return patient;
     }
 
-    public void setPaperId(Integer paperId) {
-        this.paperId = paperId;
+    public void setPatient(String patient) {
+        this.patient = patient == null ? null : patient.trim();
     }
 
     public Date getStartTime() {
@@ -45,11 +45,11 @@ public class Test {
         this.endTime = endTime;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 }

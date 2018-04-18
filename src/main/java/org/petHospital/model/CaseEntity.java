@@ -13,7 +13,7 @@ public class CaseEntity {
 
     private Integer method;
 
-    private Integer categoryId;
+    private String classification;
 
     public Integer getId() {
         return id;
@@ -63,11 +63,11 @@ public class CaseEntity {
         this.method = method;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
+    public String getClassification() {
+        return classification;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setClassification(String classification) {
+        this.classification = classification == null ? null : classification.trim();
     }
 }
