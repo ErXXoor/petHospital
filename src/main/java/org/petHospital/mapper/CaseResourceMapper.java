@@ -17,6 +17,7 @@ public interface CaseResourceMapper {
     int insertSelective(CaseResource record);
 
     List<CaseResource> selectByExample(CaseResourceExample example);
+    List<CaseResource> selectAll();
 
     CaseResource selectByPrimaryKey(Integer id);
 

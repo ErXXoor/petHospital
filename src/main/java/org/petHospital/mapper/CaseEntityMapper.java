@@ -17,8 +17,13 @@ public interface CaseEntityMapper {
     int insertSelective(CaseEntity record);
 
     List<CaseEntity> selectByExample(CaseEntityExample example);
+    
+    List<CaseEntity> getByName(String caseName);
+    List<CaseEntity> selectByClassification(String classification);
 
     CaseEntity selectByPrimaryKey(Integer id);
+    
+    List<CaseEntity> findAll();
 
     int updateByExampleSelective(@Param("record") CaseEntity record, @Param("example") CaseEntityExample example);
 
@@ -27,6 +32,4 @@ public interface CaseEntityMapper {
     int updateByPrimaryKeySelective(CaseEntity record);
 
     int updateByPrimaryKey(CaseEntity record);
-    
-    List<CaseEntity> findAllCaseEntityByCategoryId(int id);
 }

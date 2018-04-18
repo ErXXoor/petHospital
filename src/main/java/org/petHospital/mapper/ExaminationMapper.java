@@ -17,6 +17,8 @@ public interface ExaminationMapper {
     int insertSelective(Examination record);
 
     List<Examination> selectByExample(ExaminationExample example);
+    List<Examination> selectAll();
+    Examination selectByName(String name);
 
     Examination selectByPrimaryKey(Integer id);
 

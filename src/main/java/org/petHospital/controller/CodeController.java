@@ -1,8 +1,25 @@
 package org.petHospital.controller;
 
-@Controller
-//@RequestMapping("/")
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
+
+import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 @CrossOrigin(origins = "*", maxAge = 3600)
+@Controller
 public class CodeController {
   private int width = 90;//定义图片的width
   private int height = 20;//定义图片的height

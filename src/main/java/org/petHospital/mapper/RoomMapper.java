@@ -27,4 +27,8 @@ public interface RoomMapper {
     int updateByPrimaryKeySelective(Room record);
 
     int updateByPrimaryKey(Room record);
+    
+    List<Room> findAll();
+    
+    Room getByName(String name);
 }

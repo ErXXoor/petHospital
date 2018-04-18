@@ -27,4 +27,8 @@ public interface MedicineMapper {
     int updateByPrimaryKeySelective(Medicine record);
 
     int updateByPrimaryKey(Medicine record);
+    
+    List<Medicine> findAll();
+    
+    Medicine getByName(String name);
 }

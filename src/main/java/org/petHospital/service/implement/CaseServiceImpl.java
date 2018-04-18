@@ -4,23 +4,26 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.petHospital.mapper.CaseEntityMapper;
+import org.petHospital.model.CaseEntity;
 import org.petHospital.service.CaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CaseServiceImpl implements CaseService {
 
     @Autowired
-    private CaseDao caseRepository;
+    private CaseEntityMapper caseRepository;
 
     //log工厂
     private final Log log = LogFactory.getLog(getClass());
 
     public Integer saveCase(CaseEntity caseEntity) {
         try {
-            return caseRepository.save(caseEntity);
-        } catch (HibernateException e) {
+            return caseRepository.insert(caseEntity);
+        } catch (DataAccessException e) {
             log.error("在saveCase出错了");
             log.error(e);
             e.printStackTrace();
@@ -32,7 +35,7 @@ public class CaseServiceImpl implements CaseService {
         try {
             List list = caseRepository.findAll();
             return list;
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             log.error("在getAllCase出错了");
             log.error(e);
             e.printStackTrace();
@@ -44,7 +47,7 @@ public class CaseServiceImpl implements CaseService {
         try {
             List list = caseRepository.getByName(name);
             return list;
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             log.error("在getCase出错了");
             log.error(e);
             e.printStackTrace();
@@ -54,8 +57,8 @@ public class CaseServiceImpl implements CaseService {
 
     public void deleteCase(Integer id) {
         try {
-            caseRepository.delete(id);
-        } catch (HibernateException e) {
+            caseRepository.deleteByPrimaryKey(id);
+        } catch (Exception e) {
             log.error("在deleteCase出错了");
             log.error(e);
             e.printStackTrace();
@@ -64,8 +67,8 @@ public class CaseServiceImpl implements CaseService {
 
     public void updateCase(CaseEntity caseEntity) {
         try {
-            caseRepository.update(caseEntity);
-        } catch (HibernateException e) {
+            caseRepository.updateByPrimaryKey(caseEntity);
+        } catch (Exception e) {
             log.error("在updateCase出错了");
             log.error(e);
             e.printStackTrace();
@@ -74,9 +77,9 @@ public class CaseServiceImpl implements CaseService {
 
     public List<CaseEntity> getCaseInClassification(String classification) {
         try {
-            List list = caseRepository.getByClassification(classification);
+            List list = caseRepository.selectByClassification(classification);
             return list;
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             log.error("在getCaseInClassification出错了");
             log.error(e);
             e.printStackTrace();
@@ -86,8 +89,8 @@ public class CaseServiceImpl implements CaseService {
 
     public CaseEntity getCaseByID(Integer id) {
         try {
-            return caseRepository.getByID(id);
-        } catch (HibernateException e) {
+            return caseRepository.selectByPrimaryKey(id);
+        } catch (Exception e) {
             log.error("在getCaseByID出错了");
             log.error(e);
             e.printStackTrace();
