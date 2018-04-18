@@ -1,10 +1,12 @@
 package org.petHospital.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,9 +30,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import net.sf.json.JSONObject;
 
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class UserController {
 	private Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -124,14 +128,16 @@ public class UserController {
 	Boolean checkUsername(String username){
 		return userService.checkUsername(username);
 	}
-
-//    @RequestMapping(value="/getUser")
-//    //@ResponseBody
-//    public UserEntity getUser(String id) {
-//      UserEntity user=queryService.getOne(id);
-//    		//UserEntity user=userMapper.getOne(id);
-//    		return user;
-//    }
-//     
+	
+	@RequestMapping(value = "validate",method = RequestMethod.POST)
+    @ResponseBody
+    @JsonIgnoreProperties(ignoreUnknown=true)
+    public Map<String, String> validate(@RequestBody Map map,HttpSession session){
+		Map<String, String> result = new HashMap<String, String>();
+		result.put("isValidated", "true");
+		result.put("userType","1");
+		return result;
+	}
+  
   
 }
