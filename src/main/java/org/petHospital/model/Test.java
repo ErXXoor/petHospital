@@ -1,17 +1,17 @@
 package org.petHospital.model;
 
-import java.util.Date;
-
 public class Test {
     private Integer id;
 
-    private Integer paperId;
+    private String questionId;
 
-    private Date startTime;
+    private String startTime;
 
-    private Date endTime;
+    private String duration;
 
-    private String name;
+    private String type;
+
+    private String score;
 
     public Integer getId() {
         return id;
@@ -21,35 +21,43 @@ public class Test {
         this.id = id;
     }
 
-    public Integer getPaperId() {
-        return paperId;
+    public String getQuestionId() {
+        return questionId;
     }
 
-    public void setPaperId(Integer paperId) {
-        this.paperId = paperId;
+    public void setQuestionId(String questionId) {
+        this.questionId = questionId == null ? null : questionId.trim();
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime == null ? null : startTime.trim();
     }
 
-    public Date getEndTime() {
-        return endTime;
+    public String getDuration() {
+        return duration;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    public void setDuration(String duration) {
+        this.duration = duration == null ? null : duration.trim();
     }
 
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score == null ? null : score.trim();
     }
 }

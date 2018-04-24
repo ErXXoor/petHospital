@@ -15,6 +15,8 @@ public interface TestMapper {
     int insert(Test record);
 
     int insertSelective(Test record);
+    
+    List<Test> selectAll();
 
     List<Test> selectByExample(TestExample example);
 

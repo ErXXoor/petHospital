@@ -2,6 +2,8 @@ package org.petHospital.service;
 
 import java.util.List;
 
+import org.petHospital.model.CaseEntity;
+
 public interface CaseService {
     Integer saveCase(CaseEntity caseEntity);
 

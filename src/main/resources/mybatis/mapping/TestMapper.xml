@@ -3,10 +3,11 @@
 <mapper namespace="org.petHospital.mapper.TestMapper" >
   <resultMap id="BaseResultMap" type="org.petHospital.model.Test" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="paper_id" property="paperId" jdbcType="INTEGER" />
-    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
-    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="question_id" property="questionId" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="VARCHAR" />
+    <result column="duration" property="duration" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, paper_id, start_time, end_time, name
+    id, question_id, start_time, duration, type, score
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.petHospital.model.TestExample" >
     select
@@ -103,10 +104,10 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into test (paper_id, start_time, end_time, 
-      name)
-    values (#{paperId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
-      #{name,jdbcType=VARCHAR})
+    insert into test (question_id, start_time, duration, 
+      type, score)
+    values (#{questionId,jdbcType=VARCHAR}, #{startTime,jdbcType=VARCHAR}, #{duration,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{score,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.petHospital.model.Test" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -114,31 +115,37 @@
     </selectKey>
     insert into test
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="paperId != null" >
-        paper_id,
+      <if test="questionId != null" >
+        question_id,
       </if>
       <if test="startTime != null" >
         start_time,
       </if>
-      <if test="endTime != null" >
-        end_time,
+      <if test="duration != null" >
+        duration,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="score != null" >
+        score,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="paperId != null" >
-        #{paperId,jdbcType=INTEGER},
+      <if test="questionId != null" >
+        #{questionId,jdbcType=VARCHAR},
       </if>
       <if test="startTime != null" >
-        #{startTime,jdbcType=TIMESTAMP},
+        #{startTime,jdbcType=VARCHAR},
       </if>
-      <if test="endTime != null" >
-        #{endTime,jdbcType=TIMESTAMP},
+      <if test="duration != null" >
+        #{duration,jdbcType=VARCHAR},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -154,17 +161,20 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.paperId != null" >
-        paper_id = #{record.paperId,jdbcType=INTEGER},
+      <if test="record.questionId != null" >
+        question_id = #{record.questionId,jdbcType=VARCHAR},
       </if>
       <if test="record.startTime != null" >
-        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+        start_time = #{record.startTime,jdbcType=VARCHAR},
       </if>
-      <if test="record.endTime != null" >
-        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      <if test="record.duration != null" >
+        duration = #{record.duration,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -174,10 +184,11 @@
   <update id="updateByExample" parameterType="map" >
     update test
     set id = #{record.id,jdbcType=INTEGER},
-      paper_id = #{record.paperId,jdbcType=INTEGER},
-      start_time = #{record.startTime,jdbcType=TIMESTAMP},
-      end_time = #{record.endTime,jdbcType=TIMESTAMP},
-      name = #{record.name,jdbcType=VARCHAR}
+      question_id = #{record.questionId,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=VARCHAR},
+      duration = #{record.duration,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -185,27 +196,34 @@
   <update id="updateByPrimaryKeySelective" parameterType="org.petHospital.model.Test" >
     update test
     <set >
-      <if test="paperId != null" >
-        paper_id = #{paperId,jdbcType=INTEGER},
+      <if test="questionId != null" >
+        question_id = #{questionId,jdbcType=VARCHAR},
       </if>
       <if test="startTime != null" >
-        start_time = #{startTime,jdbcType=TIMESTAMP},
+        start_time = #{startTime,jdbcType=VARCHAR},
       </if>
-      <if test="endTime != null" >
-        end_time = #{endTime,jdbcType=TIMESTAMP},
+      <if test="duration != null" >
+        duration = #{duration,jdbcType=VARCHAR},
       </if>
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="org.petHospital.model.Test" >
     update test
-    set paper_id = #{paperId,jdbcType=INTEGER},
-      start_time = #{startTime,jdbcType=TIMESTAMP},
-      end_time = #{endTime,jdbcType=TIMESTAMP},
-      name = #{name,jdbcType=VARCHAR}
+    set question_id = #{questionId,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+  	select * from test
+  </select>
 </mapper>

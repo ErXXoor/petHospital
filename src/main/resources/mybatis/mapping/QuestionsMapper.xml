@@ -3,10 +3,8 @@
 <mapper namespace="org.petHospital.mapper.QuestionsMapper" >
   <resultMap id="BaseResultMap" type="org.petHospital.model.Questions" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="question_context" property="questionContext" jdbcType="VARCHAR" />
-    <result column="question_category" property="questionCategory" jdbcType="VARCHAR" />
-    <result column="question_score" property="questionScore" jdbcType="INTEGER" />
-    <result column="paper_id" property="paperId" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="option" property="option" jdbcType="VARCHAR" />
     <result column="answer" property="answer" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -68,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, question_context, question_category, question_score, paper_id, answer
+    id, content, option, answer
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.petHospital.model.QuestionsExample" >
     select
@@ -104,11 +102,9 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into questions (question_context, question_category, 
-      question_score, paper_id, answer
+    insert into questions (content, option, answer
       )
-    values (#{questionContext,jdbcType=VARCHAR}, #{questionCategory,jdbcType=VARCHAR}, 
-      #{questionScore,jdbcType=INTEGER}, #{paperId,jdbcType=INTEGER}, #{answer,jdbcType=VARCHAR}
+    values (#{content,jdbcType=VARCHAR}, #{option,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="org.petHospital.model.Questions" >
@@ -117,34 +113,22 @@
     </selectKey>
     insert into questions
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="questionContext != null" >
-        question_context,
+      <if test="content != null" >
+        content,
       </if>
-      <if test="questionCategory != null" >
-        question_category,
-      </if>
-      <if test="questionScore != null" >
-        question_score,
-      </if>
-      <if test="paperId != null" >
-        paper_id,
+      <if test="option != null" >
+        option,
       </if>
       <if test="answer != null" >
         answer,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="questionContext != null" >
-        #{questionContext,jdbcType=VARCHAR},
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
       </if>
-      <if test="questionCategory != null" >
-        #{questionCategory,jdbcType=VARCHAR},
-      </if>
-      <if test="questionScore != null" >
-        #{questionScore,jdbcType=INTEGER},
-      </if>
-      <if test="paperId != null" >
-        #{paperId,jdbcType=INTEGER},
+      <if test="option != null" >
+        #{option,jdbcType=VARCHAR},
       </if>
       <if test="answer != null" >
         #{answer,jdbcType=VARCHAR},
@@ -163,17 +147,11 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.questionContext != null" >
-        question_context = #{record.questionContext,jdbcType=VARCHAR},
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
       </if>
-      <if test="record.questionCategory != null" >
-        question_category = #{record.questionCategory,jdbcType=VARCHAR},
-      </if>
-      <if test="record.questionScore != null" >
-        question_score = #{record.questionScore,jdbcType=INTEGER},
-      </if>
-      <if test="record.paperId != null" >
-        paper_id = #{record.paperId,jdbcType=INTEGER},
+      <if test="record.option != null" >
+        option = #{record.option,jdbcType=VARCHAR},
       </if>
       <if test="record.answer != null" >
         answer = #{record.answer,jdbcType=VARCHAR},
@@ -186,10 +164,8 @@
   <update id="updateByExample" parameterType="map" >
     update questions
     set id = #{record.id,jdbcType=INTEGER},
-      question_context = #{record.questionContext,jdbcType=VARCHAR},
-      question_category = #{record.questionCategory,jdbcType=VARCHAR},
-      question_score = #{record.questionScore,jdbcType=INTEGER},
-      paper_id = #{record.paperId,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=VARCHAR},
+      option = #{record.option,jdbcType=VARCHAR},
       answer = #{record.answer,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -198,17 +174,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="org.petHospital.model.Questions" >
     update questions
     <set >
-      <if test="questionContext != null" >
-        question_context = #{questionContext,jdbcType=VARCHAR},
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
       </if>
-      <if test="questionCategory != null" >
-        question_category = #{questionCategory,jdbcType=VARCHAR},
-      </if>
-      <if test="questionScore != null" >
-        question_score = #{questionScore,jdbcType=INTEGER},
-      </if>
-      <if test="paperId != null" >
-        paper_id = #{paperId,jdbcType=INTEGER},
+      <if test="option != null" >
+        option = #{option,jdbcType=VARCHAR},
       </if>
       <if test="answer != null" >
         answer = #{answer,jdbcType=VARCHAR},
@@ -218,11 +188,12 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="org.petHospital.model.Questions" >
     update questions
-    set question_context = #{questionContext,jdbcType=VARCHAR},
-      question_category = #{questionCategory,jdbcType=VARCHAR},
-      question_score = #{questionScore,jdbcType=INTEGER},
-      paper_id = #{paperId,jdbcType=INTEGER},
+    set content = #{content,jdbcType=VARCHAR},
+      option = #{option,jdbcType=VARCHAR},
       answer = #{answer,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+  	select * from questions
+  </select>
 </mapper>

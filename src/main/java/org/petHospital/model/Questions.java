@@ -3,13 +3,9 @@ package org.petHospital.model;
 public class Questions {
     private Integer id;
 
-    private String questionContext;
+    private String content;
 
-    private String questionCategory;
-
-    private Integer questionScore;
-
-    private Integer paperId;
+    private String option;
 
     private String answer;
 
@@ -21,36 +17,20 @@ public class Questions {
         this.id = id;
     }
 
-    public String getQuestionContext() {
-        return questionContext;
+    public String getContent() {
+        return content;
     }
 
-    public void setQuestionContext(String questionContext) {
-        this.questionContext = questionContext == null ? null : questionContext.trim();
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 
-    public String getQuestionCategory() {
-        return questionCategory;
+    public String getOption() {
+        return option;
     }
 
-    public void setQuestionCategory(String questionCategory) {
-        this.questionCategory = questionCategory == null ? null : questionCategory.trim();
-    }
-
-    public Integer getQuestionScore() {
-        return questionScore;
-    }
-
-    public void setQuestionScore(Integer questionScore) {
-        this.questionScore = questionScore;
-    }
-
-    public Integer getPaperId() {
-        return paperId;
-    }
-
-    public void setPaperId(Integer paperId) {
-        this.paperId = paperId;
+    public void setOption(String option) {
+        this.option = option == null ? null : option.trim();
     }
 
     public String getAnswer() {

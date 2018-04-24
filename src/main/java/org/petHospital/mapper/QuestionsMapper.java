@@ -17,6 +17,8 @@ public interface QuestionsMapper {
     int insertSelective(Questions record);
 
     List<Questions> selectByExample(QuestionsExample example);
+    
+    List<Questions> selectAll();
 
     Questions selectByPrimaryKey(Integer id);
 

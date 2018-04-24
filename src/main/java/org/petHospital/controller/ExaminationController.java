@@ -1,8 +1,25 @@
 package org.petHospital.controller;
 
-@Controller
-//@RequestMapping("/")
+import java.util.ArrayList;
+import java.util.List;
+
+import org.petHospital.model.Examination;
+import org.petHospital.service.ExaminationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.ObjectMapper;
 @CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
 public class ExaminationController {
   @Autowired
   private ExaminationService examinationService;

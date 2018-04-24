@@ -1,11 +1,28 @@
 package org.petHospital.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.petHospital.model.CaseEntity;
+import org.petHospital.model.CaseResource;
+import org.petHospital.service.CaseResourceService;
+import org.petHospital.service.CaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
 public class CaseController {
 	@Autowired
     private CaseService caseService;

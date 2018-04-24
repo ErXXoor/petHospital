@@ -28,5 +28,7 @@ public interface StaffMapper {
 
     int updateByPrimaryKey(Staff record);
     
-//    Integer insertStaff(String id, String name, int room, String title);
+    List<Staff> findAll();
+    
+    Staff getByName(String name);
 }
