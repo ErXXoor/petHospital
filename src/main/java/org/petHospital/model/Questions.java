@@ -5,7 +5,7 @@ public class Questions {
 
     private String content;
 
-    private String option;
+    private String questionOption;
 
     private String answer;
 
@@ -25,12 +25,12 @@ public class Questions {
         this.content = content == null ? null : content.trim();
     }
 
-    public String getOption() {
-        return option;
+    public String getQuestionOption() {
+        return questionOption;
     }
 
-    public void setOption(String option) {
-        this.option = option == null ? null : option.trim();
+    public void setQuestionOption(String questionOption) {
+        this.questionOption = questionOption == null ? null : questionOption.trim();
     }
 
     public String getAnswer() {
