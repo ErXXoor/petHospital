@@ -234,73 +234,73 @@ public class QuestionsExample {
             return (Criteria) this;
         }
 
-        public Criteria andOptionIsNull() {
-            addCriterion("option is null");
+        public Criteria andQuestionOptionIsNull() {
+            addCriterion("question_option is null");
             return (Criteria) this;
         }
 
-        public Criteria andOptionIsNotNull() {
-            addCriterion("option is not null");
+        public Criteria andQuestionOptionIsNotNull() {
+            addCriterion("question_option is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOptionEqualTo(String value) {
-            addCriterion("option =", value, "option");
+        public Criteria andQuestionOptionEqualTo(String value) {
+            addCriterion("question_option =", value, "questionOption");
             return (Criteria) this;
         }
 
-        public Criteria andOptionNotEqualTo(String value) {
-            addCriterion("option <>", value, "option");
+        public Criteria andQuestionOptionNotEqualTo(String value) {
+            addCriterion("question_option <>", value, "questionOption");
             return (Criteria) this;
         }
 
-        public Criteria andOptionGreaterThan(String value) {
-            addCriterion("option >", value, "option");
+        public Criteria andQuestionOptionGreaterThan(String value) {
+            addCriterion("question_option >", value, "questionOption");
             return (Criteria) this;
         }
 
-        public Criteria andOptionGreaterThanOrEqualTo(String value) {
-            addCriterion("option >=", value, "option");
+        public Criteria andQuestionOptionGreaterThanOrEqualTo(String value) {
+            addCriterion("question_option >=", value, "questionOption");
             return (Criteria) this;
         }
 
-        public Criteria andOptionLessThan(String value) {
-            addCriterion("option <", value, "option");
+        public Criteria andQuestionOptionLessThan(String value) {
+            addCriterion("question_option <", value, "questionOption");
             return (Criteria) this;
         }
 
-        public Criteria andOptionLessThanOrEqualTo(String value) {
-            addCriterion("option <=", value, "option");
+        public Criteria andQuestionOptionLessThanOrEqualTo(String value) {
+            addCriterion("question_option <=", value, "questionOption");
             return (Criteria) this;
         }
 
-        public Criteria andOptionLike(String value) {
-            addCriterion("option like", value, "option");
+        public Criteria andQuestionOptionLike(String value) {
+            addCriterion("question_option like", value, "questionOption");
             return (Criteria) this;
         }
 
-        public Criteria andOptionNotLike(String value) {
-            addCriterion("option not like", value, "option");
+        public Criteria andQuestionOptionNotLike(String value) {
+            addCriterion("question_option not like", value, "questionOption");
             return (Criteria) this;
         }
 
-        public Criteria andOptionIn(List<String> values) {
-            addCriterion("option in", values, "option");
+        public Criteria andQuestionOptionIn(List<String> values) {
+            addCriterion("question_option in", values, "questionOption");
             return (Criteria) this;
         }
 
-        public Criteria andOptionNotIn(List<String> values) {
-            addCriterion("option not in", values, "option");
+        public Criteria andQuestionOptionNotIn(List<String> values) {
+            addCriterion("question_option not in", values, "questionOption");
             return (Criteria) this;
         }
 
-        public Criteria andOptionBetween(String value1, String value2) {
-            addCriterion("option between", value1, value2, "option");
+        public Criteria andQuestionOptionBetween(String value1, String value2) {
+            addCriterion("question_option between", value1, value2, "questionOption");
             return (Criteria) this;
         }
 
-        public Criteria andOptionNotBetween(String value1, String value2) {
-            addCriterion("option not between", value1, value2, "option");
+        public Criteria andQuestionOptionNotBetween(String value1, String value2) {
+            addCriterion("question_option not between", value1, value2, "questionOption");
             return (Criteria) this;
         }
 

@@ -3,6 +3,7 @@ package org.petHospital.service;
 import java.util.List;
 
 import org.petHospital.model.Questions;
+import org.springframework.stereotype.Service;
 
 public interface QuestionService {
 	Integer saveQuestions(Questions questions);

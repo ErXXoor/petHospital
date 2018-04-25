@@ -253,7 +253,7 @@
     select 
     <include refid="Base_Column_List" /> 
     from case_entity
-    where classification={arg0}
+    where classification=#{classification,jdbcType=VARCHAR}
   </select>
   
 </mapper>

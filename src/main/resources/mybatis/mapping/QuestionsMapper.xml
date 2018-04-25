@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="org.petHospital.model.Questions" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="content" property="content" jdbcType="VARCHAR" />
-    <result column="option" property="option" jdbcType="VARCHAR" />
+    <result column="question_option" property="questionOption" jdbcType="VARCHAR" />
     <result column="answer" property="answer" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, content, option, answer
+    id, content, question_option, answer
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.petHospital.model.QuestionsExample" >
     select
@@ -102,9 +102,9 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into questions (content, option, answer
+    insert into questions (content, question_option, answer
       )
-    values (#{content,jdbcType=VARCHAR}, #{option,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}
+    values (#{content,jdbcType=VARCHAR}, #{questionOption,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="org.petHospital.model.Questions" >
@@ -116,8 +116,8 @@
       <if test="content != null" >
         content,
       </if>
-      <if test="option != null" >
-        option,
+      <if test="questionOption != null" >
+        question_option,
       </if>
       <if test="answer != null" >
         answer,
@@ -127,8 +127,8 @@
       <if test="content != null" >
         #{content,jdbcType=VARCHAR},
       </if>
-      <if test="option != null" >
-        #{option,jdbcType=VARCHAR},
+      <if test="questionOption != null" >
+        #{questionOption,jdbcType=VARCHAR},
       </if>
       <if test="answer != null" >
         #{answer,jdbcType=VARCHAR},
@@ -150,8 +150,8 @@
       <if test="record.content != null" >
         content = #{record.content,jdbcType=VARCHAR},
       </if>
-      <if test="record.option != null" >
-        option = #{record.option,jdbcType=VARCHAR},
+      <if test="record.questionOption != null" >
+        question_option = #{record.questionOption,jdbcType=VARCHAR},
       </if>
       <if test="record.answer != null" >
         answer = #{record.answer,jdbcType=VARCHAR},
@@ -165,7 +165,7 @@
     update questions
     set id = #{record.id,jdbcType=INTEGER},
       content = #{record.content,jdbcType=VARCHAR},
-      option = #{record.option,jdbcType=VARCHAR},
+      question_option = #{record.questionOption,jdbcType=VARCHAR},
       answer = #{record.answer,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,8 +177,8 @@
       <if test="content != null" >
         content = #{content,jdbcType=VARCHAR},
       </if>
-      <if test="option != null" >
-        option = #{option,jdbcType=VARCHAR},
+      <if test="questionOption != null" >
+        question_option = #{questionOption,jdbcType=VARCHAR},
       </if>
       <if test="answer != null" >
         answer = #{answer,jdbcType=VARCHAR},
@@ -189,11 +189,11 @@
   <update id="updateByPrimaryKey" parameterType="org.petHospital.model.Questions" >
     update questions
     set content = #{content,jdbcType=VARCHAR},
-      option = #{option,jdbcType=VARCHAR},
+      question_option = #{questionOption,jdbcType=VARCHAR},
       answer = #{answer,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-    <select id="selectAll" resultMap="BaseResultMap">
+  <select id="selectAll" resultMap="BaseResultMap">
   	select * from questions
   </select>
 </mapper>

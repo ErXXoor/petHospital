@@ -8,7 +8,8 @@ import org.petHospital.mapper.QuestionsMapper;
 import org.petHospital.model.Questions;
 import org.petHospital.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
+@Service
 public class QuestionServiceImpl implements QuestionService{
 	@Autowired
 	private QuestionsMapper questionsRepository;
