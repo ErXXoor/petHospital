@@ -138,10 +138,10 @@ public class TestController {
     	
         List questions = questionService.getAllQuestions();
     	List<Questions> subquestions = null;
-        int total = (questions.size()-1)/10+1;
-        int fromIndex = (pages - 1) * 10;
+        int total = (questions.size()-1)/5+1;
+        int fromIndex = (pages - 1) * 5;
         if (questions.size() >= fromIndex) {
-            int toIndex = pages * 10;
+            int toIndex = pages * 5;
             if (questions.size() >= toIndex) {
             	subquestions = questions.subList(fromIndex, toIndex);
             } else {
